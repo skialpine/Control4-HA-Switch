@@ -304,29 +304,30 @@ local function grok_string(self, text, start, etc)
 
 	local i = start + 1 -- +1 to bypass the initial quote
 	local text_len = text:len()
-	local VALUE = ''
+	local parts = {}
 	while i <= text_len do
-		local c = text:sub(i, i)
-		if c == '"' then
-			return VALUE, i + 1
+		-- Copy unescaped spans once instead of growing a string per byte.
+		local special = text:find('["\\]', i)
+		if not special then break end
+		if special > i then parts[#parts + 1] = text:sub(i, special - 1) end
+		i = special
+		if text:sub(i, i) == '"' then
+			return table.concat(parts), i + 1
 		end
-		if c ~= '\\' then
-			VALUE = VALUE .. c
-			i = i + 1
-		elseif text:match('^\\b', i) then
-			VALUE = VALUE .. '\b'
+		if text:match('^\\b', i) then
+			parts[#parts + 1] = '\b'
 			i = i + 2
 		elseif text:match('^\\f', i) then
-			VALUE = VALUE .. '\f'
+			parts[#parts + 1] = '\f'
 			i = i + 2
 		elseif text:match('^\\n', i) then
-			VALUE = VALUE .. '\n'
+			parts[#parts + 1] = '\n'
 			i = i + 2
 		elseif text:match('^\\r', i) then
-			VALUE = VALUE .. '\r'
+			parts[#parts + 1] = '\r'
 			i = i + 2
 		elseif text:match('^\\t', i) then
-			VALUE = VALUE .. '\t'
+			parts[#parts + 1] = '\t'
 			i = i + 2
 		else
 			local hex =
@@ -350,10 +351,10 @@ local function grok_string(self, text, start, etc)
 						-- not a proper low, so we'll just leave the first codepoint as is and spit it out.
 					end
 				end
-				VALUE = VALUE .. unicode_codepoint_as_utf8(codepoint)
+				parts[#parts + 1] = unicode_codepoint_as_utf8(codepoint)
 			else
 				-- just pass through what's escaped
-				VALUE = VALUE .. text:match('^\\(.)', i)
+				parts[#parts + 1] = '' .. text:match('^\\(.)', i)
 				i = i + 2
 			end
 		end
@@ -477,7 +478,8 @@ grok_one = function(self, text, start, etc)
 	elseif text:find('^false', start) then
 		return false, start + 5
 	elseif text:find('^null', start) then
-		return nil, start + 4
+		-- Opt-in sentinel preserves null in private codecs; legacy default is nil.
+		return self.null, start + 4
 	else
 		self:onDecodeError("can't parse JSON", text, start, etc)
 	end
@@ -620,6 +622,9 @@ end
 --
 local encode_value  -- must predeclare because it calls itself
 function encode_value(self, value, parents, etc)
+	if self.null ~= nil and value == self.null then
+		return 'null'
+	end
 	if value == nil then
 		return 'null'
 	end
@@ -705,7 +710,9 @@ function encode_value(self, value, parents, etc)
 			--
 			-- An empty array/object... we'll treat it as an array, though it should really be an option
 			--
-			result_value = '{}'
+			-- Strict private codecs preserve explicit empty arrays. Legacy default
+			-- retains this vendor version's historical empty-table encoding.
+			result_value = self.strictTypes and '[]' or '{}'
 		end
 
 		parents[T] = false
