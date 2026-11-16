@@ -1550,4 +1550,86 @@ for _,entity in ipairs({'switch.front_porch','input_boolean.fixture','light.bina
     OnDriverDestroyed()
 end
 
+-- Connected color is local to C4 and follows the target's real capabilities.
+do
+    local app=fresh('event.color_paddle','Control Connected C4 Light',nil,{[203]=900,[204]=902})
+    local color_caps='<DynamicCapabilities><dimmer>True</dimmer><supports_color>True</supports_color>'
+        ..'<supports_color_correlated_temperature>True</supports_color_correlated_temperature>'
+        ..'<color_correlated_temperature_min>2200</color_correlated_temperature_min>'
+        ..'<color_correlated_temperature_max>6500</color_correlated_temperature_max>'
+        ..'<color_rate_behavior>2</color_rate_behavior><color_rate_min>0</color_rate_min>'
+        ..'<color_rate_max>60000</color_rate_max><supports_color_stop>True</supports_color_stop></DynamicCapabilities>'
+    local values={[901]={[1000]='1',[1001]='35',[1006]='50',[1200]='0.2,0.3,0',[6661]=color_caps},
+        [902]={[1000]='0',[6661]='<DynamicCapabilities><dimmer>False</dimmer></DynamicCapabilities>'}}
+    local commands,listeners={},{}
+    function C4:GetProxyDevices() return 322 end
+    function C4:GetProxyDevicesById(provider) return provider==900 and 901 or provider end
+    function C4:GetVariable(device,variable) return values[device] and values[device][variable] end
+    function C4:RegisterVariableListener(device,variable) listeners[device..':'..variable]=true end
+    function C4:UnregisterVariableListener(device,variable) listeners[device..':'..variable]=nil end
+    function C4:SendToDevice(device,command,params) commands[#commands+1]={device=device,command=command,params=params} end
+    local function feedback(variable,value)
+        values[901][variable]=value
+        return OnWatchedVariableChanged(901,variable,value)
+    end
+    app:start()
+    local capabilities=app:last('DYNAMIC_CAPABILITIES_CHANGED',5001).params
+    eq(capabilities.supports_color,true); eq(capabilities.supports_color_correlated_temperature,true)
+    eq(capabilities.color_correlated_temperature_min,2200); eq(capabilities.color_correlated_temperature_max,6500)
+    eq(capabilities.color_rate_behavior,2); eq(capabilities.color_rate_max,60000)
+    eq(capabilities.supports_color_stop,true)
+    local shown=app:last('LIGHT_COLOR_CHANGED',5001).params
+    eq(shown.LIGHT_COLOR_CURRENT_X,0.2); eq(shown.LIGHT_COLOR_CURRENT_Y,0.3)
+    eq(shown.LIGHT_COLOR_CURRENT_COLOR_MODE,0)
+    eq(listeners['901:1200'],true)
+    check(Properties['Selected Capabilities']:find('; Color; White temperature',1,true))
+    local reports=#app:messages('LIGHT_COLOR_CHANGED',5001)
+    local cap_reports=#app:messages('DYNAMIC_CAPABILITIES_CHANGED',5001)
+    feedback(1200,'0.2,0.3,0')
+    eq(#app:messages('LIGHT_COLOR_CHANGED',5001),reports,'Identical feedback is not republished')
+    eq(#app:messages('DYNAMIC_CAPABILITIES_CHANGED',5001),cap_reports,'Color feedback does not reset native presets')
+    eq(ReceivedFromProxy(5001,'SET_COLOR_TARGET',{LIGHT_COLOR_TARGET_X='0.6',LIGHT_COLOR_TARGET_Y='0.3',
+        LIGHT_COLOR_TARGET_MODE='0',LIGHT_COLOR_TARGET_RATE='750',
+        LIGHT_COLOR_TARGET_PRESET_ID=8,LIGHT_COLOR_TARGET_PRESET_ORIGIN=2}),true)
+    eq(commands[#commands].device,901); eq(commands[#commands].command,'SET_COLOR_TARGET')
+    eq(commands[#commands].params.LIGHT_COLOR_TARGET_X,0.6)
+    eq(commands[#commands].params.LIGHT_COLOR_TARGET_COLOR_RATE,750)
+    eq(commands[#commands].params.LIGHT_COLOR_TARGET_PRESET_ORIGIN,2)
+    eq(#app:messages('LIGHT_COLOR_CHANGED',5001),reports,'A requested color is not confirmed feedback')
+    eq(app:last('LIGHT_BRIGHTNESS_CHANGED',5001).params.LIGHT_BRIGHTNESS_CURRENT,35,'Color does not change brightness')
+    feedback(1200,'0.6,0.3,0')
+    eq(app:last('LIGHT_COLOR_CHANGED',5001).params.LIGHT_COLOR_CURRENT_X,0.6)
+    ReceivedFromProxy(999,'HA_CONNECTION_STATUS',{CONNECTED=false})
+    eq(ReceivedFromProxy(5001,'SET_COLOR_TARGET',{LIGHT_COLOR_TARGET_COLOR_CORRELATED_TEMPERATURE=3000,
+        LIGHT_COLOR_TARGET_COLOR_RATE=0}),true,'Connected color works while HA is offline')
+    eq(commands[#commands].params.LIGHT_COLOR_TARGET_COLOR_CORRELATED_TEMPERATURE,3000)
+    eq(#app:services(),0,'Connected color never calls HA services')
+    feedback(1200,'0.43,0.4,1')
+    eq(app:last('LIGHT_COLOR_CHANGED',5001).params.LIGHT_COLOR_CURRENT_COLOR_MODE,1)
+    feedback(6661,color_caps:gsub('<supports_color>True','<supports_color>False'))
+    capabilities=app:last('DYNAMIC_CAPABILITIES_CHANGED',5001).params
+    eq(capabilities.supports_color,false); eq(capabilities.supports_color_correlated_temperature,true)
+    local before=#commands
+    eq(ReceivedFromProxy(5001,'SET_COLOR_TARGET',{LIGHT_COLOR_TARGET_X=0.6,LIGHT_COLOR_TARGET_Y=0.3}),false)
+    eq(ReceivedFromProxy(5001,'SET_COLOR_TARGET',{LIGHT_COLOR_TARGET_COLOR_CORRELATED_TEMPERATURE=2100}),false)
+    eq(#commands,before)
+    eq(ReceivedFromProxy(5001,'SET_COLOR_STOP',{}),true); eq(commands[#commands].command,'SET_COLOR_STOP')
+    before=#commands
+    eq(ReceivedFromProxy(5001,'UPDATE_COLOR_PRESET',{ID=10,ORIGIN=1}),true)
+    eq(ReceivedFromProxy(5001,'UPDATE_COLOR_RATE_DEFAULT',{RATE=1000}),true)
+    eq(#commands,before,'Source proxy metadata cannot change target On presets')
+    app:property('App Control Link','Bottom')
+    capabilities=app:last('DYNAMIC_CAPABILITIES_CHANGED',5001).params
+    eq(capabilities.supports_color,false); eq(capabilities.supports_color_correlated_temperature,false)
+    eq(capabilities.supports_color_stop,false)
+    eq(listeners['901:1200'],nil,'Changing targets removes the old color listener')
+    eq(feedback(1200,'0.3,0.3,0'),false)
+    eq(ReceivedFromProxy(5001,'SET_COLOR_TARGET',{LIGHT_COLOR_TARGET_X=0.6,LIGHT_COLOR_TARGET_Y=0.3}),false)
+    eq(#commands,before)
+    app:property('Operation Mode','Control HA Device')
+    eq(ReceivedFromProxy(5001,'SET_COLOR_TARGET',{LIGHT_COLOR_TARGET_X=0.6,LIGHT_COLOR_TARGET_Y=0.3}),false)
+    eq(#app:services(),0,'Direct HA color is not granted by a former C4 target')
+    OnDriverDestroyed()
+end
+
 print('Native Dimmer actual entrypoint: '..assertions..' assertions passed')

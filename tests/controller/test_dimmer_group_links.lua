@@ -43,17 +43,25 @@ local function advance(ms)
     now=target
 end
 local devices={}
+local member_caps='<DynamicCapabilities><dimmer>True</dimmer><supports_target>True</supports_target>'
+    ..'<supports_color>True</supports_color><supports_color_correlated_temperature>True</supports_color_correlated_temperature>'
+    ..'<color_correlated_temperature_min>2700</color_correlated_temperature_min>'
+    ..'<color_correlated_temperature_max>6500</color_correlated_temperature_max>'
+    ..'<color_rate_behavior>1</color_rate_behavior><color_rate_min>0</color_rate_min><color_rate_max>65535</color_rate_max>'
+    ..'</DynamicCapabilities>'
 for _,id in ipairs({101,102}) do
     devices[id]={deviceName='Member '..id,variables={
         ['1000']={name='LIGHT_STATE',value='1'},['1001']={name='LIGHT_LEVEL',value='40'},
-        ['6661']={name='DYNAMIC_CAPABILITIES',value='<DynamicCapabilities><dimmer>True</dimmer><supports_target>True</supports_target></DynamicCapabilities>'}}}
+        ['1200']={name='LIGHT_COLOR',value='0.4,0.4,1'},
+        ['6661']={name='DYNAMIC_CAPABILITIES',value=member_caps}}}
 end
 ShimSetDevices(devices)
 function C4:GetDeviceVariable(id,variable) return self:GetVariable(id,variable) end
 function C4:GetProxyDevices() return 900 end
-local member_commands,group_feedback,outputs={},{},{}
+local member_commands,group_feedback,outputs,app_feedback={},{},{},{}
 local app_state={[1000]='1',[1001]='40',[1006]='100',
     [6661]='<DynamicCapabilities><dimmer>True</dimmer></DynamicCapabilities>'}
+local app_caps={}
 local dimmer
 local links={[203]=300,[204]=302,[205]=301}
 local configured={[203]=300,[204]=302,[205]=301}
@@ -68,7 +76,17 @@ function C4:SendToProxy(binding,command,params,kind)
             variable,value=1001,tostring(params.LIGHT_BRIGHTNESS_CURRENT)
             app_state[1000]=tonumber(value)>0 and '1' or '0'
             if dimmer then dimmer.OnWatchedVariableChanged(900,1000,app_state[1000]) end
-        elseif command=='PRESET_LEVEL' then variable,value=1006,tostring(params) end
+        elseif command=='PRESET_LEVEL' then variable,value=1006,tostring(params)
+        elseif command=='LIGHT_COLOR_CHANGED' then
+            variable,value=1200,string.format('%.6f,%.6f,%d',params.LIGHT_COLOR_CURRENT_X,
+                params.LIGHT_COLOR_CURRENT_Y,params.LIGHT_COLOR_CURRENT_COLOR_MODE)
+        elseif command=='DYNAMIC_CAPABILITIES_CHANGED' then
+            for key,value in pairs(params) do app_caps[key]=value end
+            local parts={'<DynamicCapabilities>'}
+            for key,value in pairs(app_caps) do parts[#parts+1]='<'..key..'>'..tostring(value)..'</'..key..'>' end
+            parts[#parts+1]='</DynamicCapabilities>'
+            variable,value=6661,table.concat(parts)
+        end
         if variable then
             app_state[variable]=value
             if dimmer then dimmer.OnWatchedVariableChanged(900,variable,value) end
@@ -127,7 +145,7 @@ function env.C4:FireEventByID() end
 function env.C4:SetTimer() return {Cancel=function() end} end
 function env.C4:SendToProxy(binding,command,params,kind)
     if binding==999 then check(command~='HA_CALL_SERVICE','Controller mode cannot call HA load services'); return end
-    if binding==5001 then return end
+    if binding==5001 then app_feedback[command]=params; return end
     check(binding~=200 and binding~=201 and binding~=202,'Forwarding must preserve legacy provider links')
     check(reverse[configured[binding]]==binding,'Unexpected consumer binding')
     eq(kind,'COMMAND','Commands travel from consumer to provider')
@@ -185,6 +203,28 @@ eq(env.ReceivedFromProxy(5001,'SET_LEVEL',{LEVEL=35}),true)
 advance(800)
 for _,id in ipairs({101,102}) do eq(last_member(id).params.LEVEL,35,'App slider reaches the actual group members') end
 eq(app_state[1001],'35','Actual group feedback returns to the app tile')
+eq(app_feedback.DYNAMIC_CAPABILITIES_CHANGED.supports_color,true)
+eq(app_feedback.DYNAMIC_CAPABILITIES_CHANGED.supports_color_correlated_temperature,true)
+eq(app_feedback.DYNAMIC_CAPABILITIES_CHANGED.color_correlated_temperature_min,2700)
+eq(app_feedback.DYNAMIC_CAPABILITIES_CHANGED.color_correlated_temperature_max,6500)
+eq(env.ReceivedFromProxy(5001,'SET_COLOR_TARGET',{LIGHT_COLOR_TARGET_X=0.6,LIGHT_COLOR_TARGET_Y=0.3,
+    LIGHT_COLOR_TARGET_MODE=0,LIGHT_COLOR_TARGET_RATE=0}),true)
+advance(1000)
+for _,id in ipairs({101,102}) do
+    eq(last_member(id).command,'SET_COLOR_TARGET','App color reaches each actual group member')
+    eq(last_member(id).params.LIGHT_COLOR_TARGET_X,0.6)
+    eq(last_member(id).params.LIGHT_COLOR_TARGET_Y,0.3)
+end
+eq(app_feedback.LIGHT_COLOR_CHANGED.LIGHT_COLOR_CURRENT_X,0.6,'Actual group color returns to the app tile')
+eq(app_feedback.LIGHT_COLOR_CHANGED.LIGHT_COLOR_CURRENT_COLOR_MODE,0)
+eq(env.ReceivedFromProxy(5001,'SET_COLOR_TARGET',{LIGHT_COLOR_TARGET_COLOR_CORRELATED_TEMPERATURE=4000,
+    LIGHT_COLOR_TARGET_COLOR_RATE=0}),true)
+advance(1000)
+for _,id in ipairs({101,102}) do
+    eq(last_member(id).command,'SET_COLOR_TARGET')
+    eq(last_member(id).params.LIGHT_COLOR_TARGET_MODE,1)
+end
+eq(app_feedback.LIGHT_COLOR_CHANGED.LIGHT_COLOR_CURRENT_COLOR_MODE,1,'Confirmed white temperature returns to the app tile')
 set_level(40)
 for _,scenario in ipairs({{'top',203,100},{'bottom',204,0},{'toggle',205,100},{'toggle',205,0}}) do
     member_commands={}

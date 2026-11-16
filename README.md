@@ -3,7 +3,7 @@
 This repository provides two drivers:
 
 - **HA Switch 107** preserves the original Switch identity and on/off interfaces, with improved device selection, optional gestures and the original incoming keypad Button Links.
-- **HA Light 1** is a new native Light V2 driver for capability-derived brightness, timed transitions and native lighting programming. Add it as a new device; it does not replace an installed Switch.
+- **HA Light 1** is a new native Light V2 driver for capability-derived brightness, timed transitions and native lighting programming. Connected C4 lights also expose their supported color and white-temperature controls. Add it as a new device; it does not replace an installed Switch.
 
 Both use [HA Coordinator](https://github.com/bphillips09/Control4-HA-Coordinator). Coordinator 114 adds generic discovery while preserving the original family APIs. Native discovery and direct control work without an HA companion. Optional normalized gestures are implemented by the development HA Gesture Bridge; it now lives in the independent [HA Gesture Bridge repository](https://github.com/skialpine/HA-Gesture-Bridge), derived from upstream [DeviceSide/DeviceSide](https://github.com/DeviceSide/DeviceSide).
 

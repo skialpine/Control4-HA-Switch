@@ -341,14 +341,22 @@ publish=function(force)
         hide_conditions=not target.ready
         caps={ramp_to_level=target.ramp}
     end
-    local signature=tostring(dim)..'/'..tostring(caps.ramp_to_level==true)..'/'..tostring(hide_conditions)
+    local native_caps={set_level=dim,ramp_level=caps.ramp_to_level==true,
+        supports_target=false,supports_brightness_stop=false,hide_proxy_conditionals_loops=hide_conditions,
+        supports_color=target and target.full_color or false,
+        supports_color_correlated_temperature=target and target.cct or false,
+        supports_color_stop=target and target.color_stop or false,
+        color_correlated_temperature_min=target and target.cct_min or 1000,
+        color_correlated_temperature_max=target and target.cct_max or 20000,
+        color_rate_behavior=target and target.color_rate_behavior or 0,
+        color_rate_min=target and target.color_rate_min or 0,color_rate_max=target and target.color_rate_max or 0}
+    local signature=tostring(dim)..'/'..Codec:encode(native_caps)
     local capabilities_changed=published.capabilities~=signature
     if force or capabilities_changed then
         -- Repeating dimmer notifications resets the proxy's native rates.
         notify('DYNAMIC_CAPABILITIES_CHANGED',{dimmer=dim})
-        notify('DYNAMIC_CAPABILITIES_CHANGED',{set_level=dim,ramp_level=caps.ramp_to_level==true,
-            supports_target=false,supports_brightness_stop=false,supports_color=false,
-            supports_color_correlated_temperature=false,hide_proxy_conditionals_loops=hide_conditions})
+        -- Change full color and CCT together, preserving the proxy's presets.
+        notify('DYNAMIC_CAPABILITIES_CHANGED',native_caps)
         published.capabilities=signature
     end
     if target then
@@ -361,10 +369,18 @@ publish=function(force)
         end
     end
     if force or published.online~=online then notify('ONLINE_CHANGED',{STATE=online}); published.online=online end
+    local color=target and target.color
+    local color_signature=color and Codec:encode(color) or nil
+    if color and (force or capabilities_changed or published.color~=color_signature) then
+        notify('LIGHT_COLOR_CHANGED',{LIGHT_COLOR_CURRENT_X=color.x,LIGHT_COLOR_CURRENT_Y=color.y,
+            LIGHT_COLOR_CURRENT_COLOR_MODE=color.mode})
+    end
+    published.color=color_signature
     if level~=nil and (force or published.level~=level) then notify('LIGHT_BRIGHTNESS_CHANGED',{LIGHT_BRIGHTNESS_CURRENT=level}) end
     published.level=level
     prop('Selected Capabilities',target and (target.ready and
-        ('Connected C4 light: On/Off; Toggle'..(dim and '; Level' or '')..(target.ramp and '; Timed ramp' or ''))
+        ('Connected C4 light: On/Off; Toggle'..(dim and '; Level' or '')..(target.ramp and '; Timed ramp' or '')
+            ..(target.full_color and '; Color' or '')..(target.cct and '; White temperature' or ''))
         or target.reason) or Capabilities.load(selected.mode,facts))
     local metadata=coordinator_bound and transport_ready and not awaiting_snapshot and consumer and consumer.ready and consumer.last_metadata or nil
     prop('Button Capabilities',Capabilities.buttons(metadata,selected.mode))
@@ -774,6 +790,13 @@ function ReceivedFromProxy(binding,command,params)
     if command=='SET_LEVEL' then return level(params,false) end
     if command=='RAMP_TO_LEVEL' then return level(params,true) end
     if command=='SET_BRIGHTNESS_TARGET' then return level(params,params.RATE~=nil and tonumber(params.RATE)~=0,true) end
+    if command=='SET_COLOR_TARGET' or command=='SET_COLOR_STOP' then
+        if selected.mode~=CONTROLLER then status('Color control requires a connected C4 light'); return false end
+        return connected_command(command,params)
+    end
+    -- These proxy-owned values do not change the connected target's presets
+    -- or On mode. Color commands carry their explicit coordinates and rate.
+    if command=='UPDATE_COLOR_PRESET' or command=='UPDATE_COLOR_RATE_DEFAULT' or command=='SET_COLOR_RATE_DEFAULT' then return true end
     if command=='BUTTON_ACTION' or command=='DO_PUSH' or command=='DO_CLICK' or command=='DO_RELEASE' then
         local generation=source_generation
         local button=BUTTON_IDS[tonumber(params.BUTTON_ID)] or (binding>=200 and binding<=202 and BUTTON_IDS[binding-200])
