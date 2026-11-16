@@ -1,0 +1,40 @@
+<devicedata>
+  <copyright>HA driver contributors</copyright>
+  <creator>HA driver contributors</creator>
+  <manufacturer>Home Assistant</manufacturer>
+  <name>HA Entity Discovery Proof</name>
+  <model>HA Entity Discovery Proof</model>
+  <created>11/14/2026 12:00</created>
+  <modified>11/14/2026 12:00</modified>
+  <version>1</version>
+  <control>lua_gen</control>
+  <controlmethod>IP</controlmethod>
+  <driver>DriverWorks</driver>
+  <combo>true</combo>
+  <composer_categories><category>other</category></composer_categories>
+  <config>
+    <script jit="1" file="Control4-HA-Base/driver.lua"/>
+    <properties>
+      <property><name>Domains</name><type>STRING</type><readonly>false</readonly><default>switch,input_boolean,light</default></property>
+      <property><name>Attribute Keys</name><type>STRING</type><readonly>false</readonly><default>device_class,supported_features,supported_color_modes,options,unit_of_measurement</default></property>
+      <property><name>Entity Selection</name><type>LIST</type><items><item>Manual Entity ID</item></items><default>Manual Entity ID</default><readonly>false</readonly></property>
+      <property><name>Selected Entity ID</name><type>STRING</type><readonly>false</readonly><default></default></property>
+      <property><name>Selected Capabilities</name><type>STRING</type><readonly>true</readonly><default></default></property>
+      <property><name>Discovery Status</name><type>STRING</type><readonly>true</readonly><default>Waiting for late initialization</default></property>
+      <property><name>Entity Count</name><type>STRING</type><readonly>true</readonly><default>0</default></property>
+      <property><name>Driver Version</name><type>STRING</type><readonly>true</readonly><default></default></property>
+      <property><name>Debug Mode</name><type>LIST</type><items><item>Off</item><item>On</item></items><default>Off</default><readonly>false</readonly></property>
+    </properties>
+    <actions><action><name>Refresh Entities</name></action></actions>
+    <commands/>
+  </config>
+  <proxy name="HA Entity Discovery Proof">other</proxy>
+  <capabilities/>
+  <events/>
+  <connections>
+    <connection>
+      <id>999</id><facing>1</facing><type>1</type><connectionname>Device Link</connectionname><consumer>True</consumer>
+      <classes><class><classname>HA_DEVICE</classname><autobind>True</autobind></class></classes>
+    </connection>
+  </connections>
+</devicedata>
