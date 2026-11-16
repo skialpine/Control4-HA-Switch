@@ -1,0 +1,247 @@
+<devicedata>
+	<copyright>BP</copyright>
+	<creator>BP</creator>
+	<manufacturer>BP</manufacturer>
+	<name>HA Switch</name>
+	<model>HA Switch</model>
+	<created>09/10/2023 12:00</created>
+	<modified>11/14/2026 12:00</modified>
+	<version>107</version>
+	<control>lua_gen</control>
+	<controlmethod>IP</controlmethod>
+	<driver>DriverWorks</driver>
+	<combo>true</combo>
+	<composer_categories>
+		<category>other</category>
+	</composer_categories>
+	<config>
+		<script jit="1" file="Control4-HA-Base/driver.lua"/>
+		<properties>
+			<property>
+				<name>Device Setup</name>
+				<type>STRING</type>
+				<default>Actions &gt; Select Device &gt; ... to search and select.</default>
+				<readonly>true</readonly>
+			</property>
+			<property>
+				<name>Operation Mode</name>
+				<type>LIST</type>
+				<items>
+					<item>Direct</item>
+					<item>Gesture Bridge</item>
+					<item>Gestures Only</item>
+				</items>
+				<default>Direct</default>
+				<readonly>false</readonly>
+			</property>
+			<property>
+				<name>Entity Selection</name>
+				<type>LIST</type>
+				<items>
+					<item>Manual Entity ID</item>
+				</items>
+				<default>Manual Entity ID</default>
+				<readonly>false</readonly>
+			</property>
+			<property>
+				<name>Entity ID</name>
+				<type>STRING</type>
+				<readonly>false</readonly>
+				<default>switch.bedroom_sleep_fan</default>
+			</property>
+			<property>
+				<name>Discovery Status</name>
+				<type>STRING</type>
+				<default>Not refreshed</default>
+				<readonly>true</readonly>
+			</property>
+			<property>
+				<name>Status</name>
+				<type>STRING</type>
+				<default>Waiting for state</default>
+				<readonly>true</readonly>
+			</property>
+			<property>
+				<name>Selected Capabilities</name>
+				<type>STRING</type>
+				<default>Waiting for metadata</default>
+				<readonly>true</readonly>
+			</property>
+			<property><name>Last Gesture</name><type>STRING</type><readonly>true</readonly><default></default></property>
+			<property><name>Gesture Count</name><type>STRING</type><readonly>true</readonly><default>0</default></property>
+			<property><name>Last Sequence</name><type>STRING</type><readonly>true</readonly><default>0</default></property>
+			<property>
+				<name>Driver Version</name>
+				<default></default>
+				<type>STRING</type>
+				<readonly>true</readonly>
+			</property>
+			<property>
+				<name>Debug Mode</name>
+				<type>LIST</type>
+				<items>
+					<item>Off</item>
+					<item>On</item>
+				</items>
+				<default>Off</default>
+				<readonly>false</readonly>
+			</property>
+		</properties>
+		<actions>
+			<action>
+				<name>Refresh Entities</name>
+				<command>RefreshEntities</command>
+			</action>
+			<action>
+				<name>Select Device</name>
+				<command>SelectDevice</command>
+				<params>
+					<param>
+						<name>Device</name>
+						<type>CUSTOM_SELECT:BrowseHADevices</type>
+						<search>
+							<filters>
+								<filter name="all">All devices</filter>
+								<filter name="switch">Switches</filter>
+								<filter name="dimmer">Dimmers</filter>
+								<filter name="group">Groups</filter>
+								<filter name="gesture">Gesture controls</filter>
+							</filters>
+						</search>
+					</param>
+				</params>
+			</action>
+		</actions>
+		<commands>
+			<command>
+				<name>Turn On</name>
+				<description>Turn NAME On</description>
+				<params>
+				</params>
+			</command>
+			<command>
+				<name>Turn Off</name>
+				<description>Turn NAME Off</description>
+				<params>
+				</params>
+			</command>
+			<command>
+				<name>Toggle</name>
+				<description>Toggle NAME</description>
+				<params/>
+			</command>
+			<command>
+				<name>Set Level</name>
+				<description>Set NAME to PARAM1 percent</description>
+				<params>
+					<param>
+						<name>Level</name>
+						<type>RANGED_INTEGER</type>
+						<minimum>0</minimum>
+						<maximum>100</maximum>
+						<default>100</default>
+					</param>
+				</params>
+			</command>
+			<command>
+				<name>Ramp To Level</name>
+				<description>Ramp NAME to PARAM1 percent over PARAM2 milliseconds</description>
+				<params>
+					<param>
+						<name>Level</name>
+						<type>RANGED_INTEGER</type>
+						<minimum>0</minimum>
+						<maximum>100</maximum>
+						<default>100</default>
+					</param>
+					<param>
+						<name>Rate Millisec</name>
+						<type>RANGED_INTEGER</type>
+						<minimum>0</minimum>
+						<maximum>2147483647</maximum>
+						<default>1000</default>
+					</param>
+				</params>
+			</command>
+		</commands>
+	</config>
+	<proxy name="HA Switch">other</proxy>
+	<capabilities>
+	</capabilities>
+	<events/>
+	<connections>
+		<connection>
+			<id>999</id>
+			<facing>1</facing>
+			<type>1</type>
+			<connectionname>Device Link</connectionname>
+			<consumer>True</consumer>
+			<classes>
+				<class>
+					<classname>HA_DEVICE</classname>
+					<autobind>True</autobind>
+				</class>
+			</classes>
+		</connection>
+		<connection>
+			<id>1</id>
+			<facing>1</facing>
+			<connectionname>Relay</connectionname>
+			<type>1</type>
+			<consumer>false</consumer>
+			<audiosource>false</audiosource>
+			<videosource>false</videosource>
+			<linelevel>false</linelevel>
+			<classes>
+				<class>
+					<classname>RELAY</classname>
+				</class>
+			</classes>
+		</connection>
+		<connection>
+			<id>200</id>
+			<facing>6</facing>
+			<connectionname>Top Button Link</connectionname>
+			<type>1</type>
+			<consumer>False</consumer>
+			<audiosource>False</audiosource>
+			<videosource>False</videosource>
+			<linelevel>True</linelevel>
+			<classes>
+				<class>
+					<classname>BUTTON_LINK</classname>
+				</class>
+			</classes>
+		</connection>
+		<connection>
+			<id>201</id>
+			<facing>6</facing>
+			<connectionname>Bottom Button Link</connectionname>
+			<type>1</type>
+			<consumer>False</consumer>
+			<audiosource>False</audiosource>
+			<videosource>False</videosource>
+			<linelevel>True</linelevel>
+			<classes>
+				<class>
+					<classname>BUTTON_LINK</classname>
+				</class>
+			</classes>
+		</connection>
+		<connection>
+			<id>202</id>
+			<facing>6</facing>
+			<connectionname>Toggle Button Link</connectionname>
+			<type>1</type>
+			<consumer>False</consumer>
+			<audiosource>False</audiosource>
+			<videosource>False</videosource>
+			<linelevel>True</linelevel>
+			<classes>
+				<class>
+					<classname>BUTTON_LINK</classname>
+				</class>
+			</classes>
+		</connection>
+	</connections>
+</devicedata>

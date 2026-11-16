@@ -1,0 +1,2116 @@
+{
+  "catalog_entity_id": "sensor.ha_gesture_bridge_catalog",
+  "catalog_rows": 62,
+  "dimmer_entity_id": "light.catalog_light_01",
+  "fixture_version": 1,
+  "gesture_entity_ids": [
+    "event.catalog_switch_control",
+    "event.catalog_light_control"
+  ],
+  "producer": "ha_gesture_bridge",
+  "states": [
+    {
+      "attributes": {
+        "bridge_acknowledgment_version": 2,
+        "bridge_buttons": [
+          {
+            "gestures": [
+              {
+                "id": "press_2",
+                "kind": "press",
+                "label": "2 Press",
+                "press_count": 2
+              }
+            ],
+            "id": "top",
+            "label": "Top"
+          }
+        ],
+        "bridge_contract_version": "1.1",
+        "bridge_control_id": "catalog-light-control",
+        "bridge_error_count": 0,
+        "bridge_load": {
+          "attributes": {
+            "brightness": 128,
+            "supported_color_modes": [
+              "brightness"
+            ],
+            "supported_features": 32
+          },
+          "available": true,
+          "domain": "light",
+          "entity_id": "light.catalog_light_00",
+          "state": "off"
+        },
+        "bridge_session_id": "catalog-light-session",
+        "bridge_sources": [
+          {
+            "availability": "available",
+            "id": "native-source",
+            "ready": true
+          }
+        ],
+        "bridge_unmapped_count": 0,
+        "bridge_update_kind": "snapshot",
+        "event_type": null,
+        "event_types": [
+          "press"
+        ],
+        "friendly_name": "Catalog Light Control"
+      },
+      "entity_id": "event.catalog_light_control",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "unknown"
+    },
+    {
+      "attributes": {
+        "event_types": [
+          "double"
+        ]
+      },
+      "entity_id": "event.catalog_paddle",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "unknown"
+    },
+    {
+      "attributes": {
+        "bridge_acknowledgment_version": 2,
+        "bridge_buttons": [
+          {
+            "gestures": [
+              {
+                "id": "press_2",
+                "kind": "press",
+                "label": "2 Press",
+                "press_count": 2
+              }
+            ],
+            "id": "top",
+            "label": "Top"
+          }
+        ],
+        "bridge_contract_version": "1.0",
+        "bridge_control_id": "catalog-switch-control",
+        "bridge_error_count": 0,
+        "bridge_load": {
+          "available": true,
+          "domain": "switch",
+          "entity_id": "switch.catalog_switch_00",
+          "state": "off"
+        },
+        "bridge_session_id": "catalog-switch-session",
+        "bridge_sources": [
+          {
+            "availability": "available",
+            "id": "native-source",
+            "ready": true
+          }
+        ],
+        "bridge_unmapped_count": 0,
+        "bridge_update_kind": "snapshot",
+        "event_type": null,
+        "event_types": [
+          "press"
+        ],
+        "friendly_name": "Catalog Switch Control"
+      },
+      "entity_id": "event.catalog_switch_control",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "unknown"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_00",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_01",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_02",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_03",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_04",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_05",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_06",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_07",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_08",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_09",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_10",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_11",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_12",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_13",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_14",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_15",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_16",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_17",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_18",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_19",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_20",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_21",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_22",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_23",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_24",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_25",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_26",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_27",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_28",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_29",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "brightness": 128,
+        "supported_color_modes": [
+          "brightness"
+        ],
+        "supported_features": 32
+      },
+      "entity_id": "light.catalog_light_30",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "unavailable"
+    },
+    {
+      "attributes": {
+        "catalog_contract_version": "1.0",
+        "catalog_entities": [
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "bridge_buttons": [
+                {
+                  "gestures": [
+                    {
+                      "id": "press_2",
+                      "kind": "press",
+                      "label": "2 Press",
+                      "press_count": 2
+                    }
+                  ],
+                  "id": "top",
+                  "label": "Top"
+                }
+              ],
+              "bridge_contract_version": "1.1",
+              "bridge_control_id": "catalog-light-control",
+              "bridge_load": {
+                "attributes": {
+                  "supported_color_modes": [
+                    "brightness"
+                  ],
+                  "supported_features": 32
+                },
+                "available": true,
+                "domain": "light",
+                "entity_id": "light.catalog_light_00",
+                "state": "off"
+              },
+              "bridge_sources": [
+                {
+                  "availability": "available",
+                  "id": "native-source",
+                  "ready": true
+                }
+              ]
+            },
+            "availability": "available",
+            "available": true,
+            "bridge_control_id": "catalog-light-control",
+            "device_id": null,
+            "domain": "event",
+            "entity_aliases": [
+              "light.catalog_light_00"
+            ],
+            "entity_id": "event.catalog_light_control",
+            "friendly_name": "Catalog Light 00 (gestures)",
+            "kind": "gesture",
+            "load_domain": "light",
+            "load_entity_id": "light.catalog_light_00",
+            "ready": true,
+            "source_entity_id": "light.catalog_light_00",
+            "state": "ready"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "bridge_buttons": [
+                {
+                  "gestures": [
+                    {
+                      "id": "press_2",
+                      "kind": "press",
+                      "label": "2 Press",
+                      "press_count": 2
+                    }
+                  ],
+                  "id": "top",
+                  "label": "Top"
+                }
+              ],
+              "bridge_contract_version": "1.0",
+              "bridge_control_id": "catalog-switch-control",
+              "bridge_load": {
+                "available": true,
+                "domain": "switch",
+                "entity_id": "switch.catalog_switch_00",
+                "state": "off"
+              },
+              "bridge_sources": [
+                {
+                  "availability": "available",
+                  "id": "native-source",
+                  "ready": true
+                }
+              ]
+            },
+            "availability": "available",
+            "available": true,
+            "bridge_control_id": "catalog-switch-control",
+            "device_id": null,
+            "domain": "event",
+            "entity_aliases": [
+              "switch.catalog_switch_00"
+            ],
+            "entity_id": "event.catalog_switch_control",
+            "friendly_name": "Catalog Switch 00 (gestures)",
+            "kind": "gesture",
+            "load_domain": "switch",
+            "load_entity_id": "switch.catalog_switch_00",
+            "ready": true,
+            "source_entity_id": "switch.catalog_switch_00",
+            "state": "ready"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_01",
+            "friendly_name": "Catalog Light 01",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_02",
+            "friendly_name": "Catalog Light 02",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_03",
+            "friendly_name": "Catalog Light 03",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_04",
+            "friendly_name": "Catalog Light 04",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_05",
+            "friendly_name": "Catalog Light 05",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_06",
+            "friendly_name": "Catalog Light 06",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_07",
+            "friendly_name": "Catalog Light 07",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_08",
+            "friendly_name": "Catalog Light 08",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_09",
+            "friendly_name": "Catalog Light 09",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_10",
+            "friendly_name": "Catalog Light 10",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_11",
+            "friendly_name": "Catalog Light 11",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_12",
+            "friendly_name": "Catalog Light 12",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_13",
+            "friendly_name": "Catalog Light 13",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_14",
+            "friendly_name": "Catalog Light 14",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_15",
+            "friendly_name": "Catalog Light 15",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_16",
+            "friendly_name": "Catalog Light 16",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_17",
+            "friendly_name": "Catalog Light 17",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_18",
+            "friendly_name": "Catalog Light 18",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_19",
+            "friendly_name": "Catalog Light 19",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_20",
+            "friendly_name": "Catalog Light 20",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_21",
+            "friendly_name": "Catalog Light 21",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_22",
+            "friendly_name": "Catalog Light 22",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_23",
+            "friendly_name": "Catalog Light 23",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_24",
+            "friendly_name": "Catalog Light 24",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_25",
+            "friendly_name": "Catalog Light 25",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_26",
+            "friendly_name": "Catalog Light 26",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_27",
+            "friendly_name": "Catalog Light 27",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_28",
+            "friendly_name": "Catalog Light 28",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_29",
+            "friendly_name": "Catalog Light 29",
+            "kind": "dimmer",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {
+              "supported_color_modes": [
+                "brightness"
+              ],
+              "supported_features": 32
+            },
+            "availability": "unavailable",
+            "available": false,
+            "device_id": null,
+            "domain": "light",
+            "entity_id": "light.catalog_light_30",
+            "friendly_name": "Catalog Light 30",
+            "kind": "dimmer",
+            "ready": false,
+            "state": "unavailable"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_01",
+            "friendly_name": "Catalog Switch 01",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_02",
+            "friendly_name": "Catalog Switch 02",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_03",
+            "friendly_name": "Catalog Switch 03",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_04",
+            "friendly_name": "Catalog Switch 04",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_05",
+            "friendly_name": "Catalog Switch 05",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_06",
+            "friendly_name": "Catalog Switch 06",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_07",
+            "friendly_name": "Catalog Switch 07",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_08",
+            "friendly_name": "Catalog Switch 08",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_09",
+            "friendly_name": "Catalog Switch 09",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_10",
+            "friendly_name": "Catalog Switch 10",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_11",
+            "friendly_name": "Catalog Switch 11",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_12",
+            "friendly_name": "Catalog Switch 12",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_13",
+            "friendly_name": "Catalog Switch 13",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_14",
+            "friendly_name": "Catalog Switch 14",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_15",
+            "friendly_name": "Catalog Switch 15",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_16",
+            "friendly_name": "Catalog Switch 16",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_17",
+            "friendly_name": "Catalog Switch 17",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_18",
+            "friendly_name": "Catalog Switch 18",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_19",
+            "friendly_name": "Catalog Switch 19",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_20",
+            "friendly_name": "Catalog Switch 20",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_21",
+            "friendly_name": "Catalog Switch 21",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_22",
+            "friendly_name": "Catalog Switch 22",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_23",
+            "friendly_name": "Catalog Switch 23",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_24",
+            "friendly_name": "Catalog Switch 24",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_25",
+            "friendly_name": "Catalog Switch 25",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_26",
+            "friendly_name": "Catalog Switch 26",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_27",
+            "friendly_name": "Catalog Switch 27",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_28",
+            "friendly_name": "Catalog Switch 28",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "available",
+            "available": true,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_29",
+            "friendly_name": "Catalog Switch 29",
+            "kind": "switch",
+            "ready": true,
+            "state": "off"
+          },
+          {
+            "area_name": "Fixture Office",
+            "attributes": {},
+            "availability": "unavailable",
+            "available": false,
+            "device_id": null,
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_30",
+            "friendly_name": "Catalog Switch 30",
+            "kind": "switch",
+            "ready": false,
+            "state": "unavailable"
+          }
+        ],
+        "catalog_names_page_001": [
+          {
+            "area_name": "Fixture Office",
+            "domain": "event",
+            "entity_aliases": [
+              "light.catalog_light_00"
+            ],
+            "entity_id": "event.catalog_light_control",
+            "friendly_name": "Catalog Light 00 (gestures)",
+            "source_entity_id": "light.catalog_light_00"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "event",
+            "entity_aliases": [
+              "switch.catalog_switch_00"
+            ],
+            "entity_id": "event.catalog_switch_control",
+            "friendly_name": "Catalog Switch 00 (gestures)",
+            "source_entity_id": "switch.catalog_switch_00"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_01",
+            "friendly_name": "Catalog Light 01"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_02",
+            "friendly_name": "Catalog Light 02"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_03",
+            "friendly_name": "Catalog Light 03"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_04",
+            "friendly_name": "Catalog Light 04"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_05",
+            "friendly_name": "Catalog Light 05"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_06",
+            "friendly_name": "Catalog Light 06"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_07",
+            "friendly_name": "Catalog Light 07"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_08",
+            "friendly_name": "Catalog Light 08"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_09",
+            "friendly_name": "Catalog Light 09"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_10",
+            "friendly_name": "Catalog Light 10"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_11",
+            "friendly_name": "Catalog Light 11"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_12",
+            "friendly_name": "Catalog Light 12"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_13",
+            "friendly_name": "Catalog Light 13"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_14",
+            "friendly_name": "Catalog Light 14"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_15",
+            "friendly_name": "Catalog Light 15"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_16",
+            "friendly_name": "Catalog Light 16"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_17",
+            "friendly_name": "Catalog Light 17"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_18",
+            "friendly_name": "Catalog Light 18"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_19",
+            "friendly_name": "Catalog Light 19"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_20",
+            "friendly_name": "Catalog Light 20"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_21",
+            "friendly_name": "Catalog Light 21"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_22",
+            "friendly_name": "Catalog Light 22"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_23",
+            "friendly_name": "Catalog Light 23"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_24",
+            "friendly_name": "Catalog Light 24"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_25",
+            "friendly_name": "Catalog Light 25"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_26",
+            "friendly_name": "Catalog Light 26"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_27",
+            "friendly_name": "Catalog Light 27"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_28",
+            "friendly_name": "Catalog Light 28"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_29",
+            "friendly_name": "Catalog Light 29"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "light",
+            "entity_id": "light.catalog_light_30",
+            "friendly_name": "Catalog Light 30"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_01",
+            "friendly_name": "Catalog Switch 01"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_02",
+            "friendly_name": "Catalog Switch 02"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_03",
+            "friendly_name": "Catalog Switch 03"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_04",
+            "friendly_name": "Catalog Switch 04"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_05",
+            "friendly_name": "Catalog Switch 05"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_06",
+            "friendly_name": "Catalog Switch 06"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_07",
+            "friendly_name": "Catalog Switch 07"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_08",
+            "friendly_name": "Catalog Switch 08"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_09",
+            "friendly_name": "Catalog Switch 09"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_10",
+            "friendly_name": "Catalog Switch 10"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_11",
+            "friendly_name": "Catalog Switch 11"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_12",
+            "friendly_name": "Catalog Switch 12"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_13",
+            "friendly_name": "Catalog Switch 13"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_14",
+            "friendly_name": "Catalog Switch 14"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_15",
+            "friendly_name": "Catalog Switch 15"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_16",
+            "friendly_name": "Catalog Switch 16"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_17",
+            "friendly_name": "Catalog Switch 17"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_18",
+            "friendly_name": "Catalog Switch 18"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_19",
+            "friendly_name": "Catalog Switch 19"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_20",
+            "friendly_name": "Catalog Switch 20"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_21",
+            "friendly_name": "Catalog Switch 21"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_22",
+            "friendly_name": "Catalog Switch 22"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_23",
+            "friendly_name": "Catalog Switch 23"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_24",
+            "friendly_name": "Catalog Switch 24"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_25",
+            "friendly_name": "Catalog Switch 25"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_26",
+            "friendly_name": "Catalog Switch 26"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_27",
+            "friendly_name": "Catalog Switch 27"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_28",
+            "friendly_name": "Catalog Switch 28"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_29",
+            "friendly_name": "Catalog Switch 29"
+          },
+          {
+            "area_name": "Fixture Office",
+            "domain": "switch",
+            "entity_id": "switch.catalog_switch_30",
+            "friendly_name": "Catalog Switch 30"
+          }
+        ],
+        "catalog_names_pages": 1,
+        "catalog_names_revision": "aedf5e3dae995a15ecb9ca626ebb8f2e55d08f18e66cd184ba3256c2b5424559",
+        "catalog_names_total": 62,
+        "catalog_names_version": 1,
+        "catalog_revision": "72f852942fdf0ceefe73415d0be35b39fa926c99f58180673626e69b921c2f68",
+        "friendly_name": "HA Gesture Bridge Catalog",
+        "icon": "mdi:format-list-bulleted"
+      },
+      "entity_id": "sensor.ha_gesture_bridge_catalog",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "62"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_00",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_01",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_02",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_03",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_04",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_05",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_06",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_07",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_08",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_09",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_10",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_11",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_12",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_13",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_14",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_15",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_16",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_17",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_18",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_19",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_20",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_21",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_22",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_23",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_24",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_25",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_26",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_27",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_28",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_29",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "off"
+    },
+    {
+      "attributes": {},
+      "entity_id": "switch.catalog_switch_30",
+      "last_updated": "2026-11-14T20:00:00.000Z",
+      "state": "unavailable"
+    }
+  ],
+  "switch_entity_id": "switch.catalog_switch_01"
+}

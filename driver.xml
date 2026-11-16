@@ -5,8 +5,8 @@
 	<name>HA Switch</name>
 	<model>HA Switch</model>
 	<created>09/10/2023 12:00</created>
-	<modified>01/12/2025 12:00</modified>
-	<version>106</version>
+	<modified>11/14/2026 12:00</modified>
+	<version>107</version>
 	<control>lua_gen</control>
 	<controlmethod>IP</controlmethod>
 	<driver>DriverWorks</driver>
@@ -16,13 +16,75 @@
 	</composer_categories>
 	<config>
 		<script jit="1" file="Control4-HA-Base/driver.lua"/>
+		<documentation file="www/documentation/index.html" />
 		<properties>
+			<property>
+				<name>Device Setup</name>
+				<type>STRING</type>
+				<default>Actions &gt; Select Device &gt; ... to search and select.</default>
+				<readonly>true</readonly>
+			</property>
+			<property>
+				<name>Operation Mode</name>
+				<type>LIST</type>
+				<items>
+					<item>Control HA Device</item>
+					<item>Control HA Device with Button Events</item>
+					<item>Programming Events Only</item>
+				</items>
+				<default>Control HA Device</default>
+				<readonly>false</readonly>
+			</property>
+			<property>
+				<name>Mode Description</name>
+				<type>STRING</type>
+				<default>Control the selected HA device; no gesture integration needed.</default>
+				<readonly>true</readonly>
+			</property>
+			<property><name>Selected Device</name><type>STRING</type><readonly>true</readonly><default>Not selected</default></property>
+			<property>
+				<name>Entity Selection</name>
+				<type>LIST</type>
+				<items>
+					<item>Manual Entity ID</item>
+				</items>
+				<default>Manual Entity ID</default>
+				<readonly>false</readonly>
+			</property>
 			<property>
 				<name>Entity ID</name>
 				<type>STRING</type>
 				<readonly>false</readonly>
 				<default>switch.bedroom_sleep_fan</default>
 			</property>
+			<property>
+				<name>Discovery Catalog Entity ID</name>
+				<type>STRING</type>
+				<readonly>false</readonly>
+				<default>sensor.ha_gesture_bridge_catalog</default>
+			</property>
+			<property>
+				<name>Discovery Status</name>
+				<type>STRING</type>
+				<default>Not refreshed</default>
+				<readonly>true</readonly>
+			</property>
+			<property>
+				<name>Status</name>
+				<type>STRING</type>
+				<default>Waiting for state</default>
+				<readonly>true</readonly>
+			</property>
+			<property>
+				<name>Selected Capabilities</name>
+				<type>STRING</type>
+				<default>Waiting for metadata</default>
+				<readonly>true</readonly>
+			</property>
+			<property><name>Button Capabilities</name><type>STRING</type><readonly>true</readonly><default>Button events need HA Gesture Bridge</default></property>
+			<property><name>Last Gesture</name><type>STRING</type><readonly>true</readonly><default></default></property>
+			<property><name>Gesture Count</name><type>STRING</type><readonly>true</readonly><default>0</default></property>
+			<property><name>Last Sequence</name><type>STRING</type><readonly>true</readonly><default>0</default></property>
 			<property>
 				<name>Driver Version</name>
 				<default></default>
@@ -39,8 +101,35 @@
 				<default>Off</default>
 				<readonly>false</readonly>
 			</property>
-		</properties>
+		<property><name>LED Behavior</name><type>LIST</type><items><item>Use Device Setting</item><item>Follow Load</item><item>Follow Load (Inverted)</item><item>Always On</item><item>Always Off</item></items><default>Use Device Setting</default><readonly>false</readonly></property>
+<property><name>LED Status</name><type>STRING</type><readonly>true</readonly><default>Not exposed/configured</default></property>
+</properties>
 		<actions>
+			<action>
+				<name>Refresh Entities</name>
+				<command>RefreshEntities</command>
+			</action>
+			<action>
+				<name>Select Device</name>
+				<command>SelectDevice</command>
+				<params>
+					<param>
+						<name>Device</name>
+						<type>CUSTOM_SELECT:BrowseHADevices</type>
+						<search>
+							<filters>
+								<filter name="all">All devices</filter>
+								<filter name="switch">Switches</filter>
+								<filter name="group">Groups</filter>
+								<filter name="gesture">Gesture controls</filter>
+							</filters>
+						</search>
+					</param>
+				</params>
+			</action>
+			<action><name>Show Advanced Properties</name><command>ShowAdvancedProperties</command></action>
+			<action><name>Hide Advanced Properties</name><command>HideAdvancedProperties</command></action>
+			<action><name>Print Diagnostics</name><command>PrintDiagnostics</command></action>
 		</actions>
 		<commands>
 			<command>
@@ -55,11 +144,39 @@
 				<params>
 				</params>
 			</command>
-		</commands>
+			<command>
+				<name>Toggle</name>
+				<description>Toggle NAME</description>
+				<params/>
+			</command>
+
+<command><name>Set LED Current Color</name><description>NAME: set led current color to PARAM2</description><params><param><name>Button</name><type>DYNAMIC_LIST</type></param><param><name>Color</name><type>STRING</type></param></params></command>
+<command><name>Set All LED Colors</name><description>NAME: set all led colors to PARAM1</description><params><param><name>Color</name><type>STRING</type></param></params></command>
+<command><name>Set LED Behavior</name><description>NAME: set led behavior to PARAM2</description><params><param><name>Button</name><type>DYNAMIC_LIST</type></param><param><name>Behavior</name><type>DYNAMIC_LIST</type></param></params></command>
+<command><name>Set LED Brightness</name><description>NAME: set led brightness to PARAM2</description><params><param><name>Button</name><type>DYNAMIC_LIST</type></param><param><name>Brightness</name><type>STRING</type></param></params></command>
+</commands>
 	</config>
 	<proxy name="HA Switch">other</proxy>
 	<capabilities>
 	</capabilities>
+	<conditionals>
+		<conditional>
+			<id>0</id>
+			<name>IS_ON</name>
+			<type>SIMPLE</type>
+			<condition_statement>Load is on</condition_statement>
+			<description>NAME is On</description>
+			<sort_order>0</sort_order>
+		</conditional>
+		<conditional>
+			<id>1</id>
+			<name>IS_OFF</name>
+			<type>SIMPLE</type>
+			<condition_statement>Load is off</condition_statement>
+			<description>NAME is Off</description>
+			<sort_order>1</sort_order>
+		</conditional>
+	</conditionals>
 	<events/>
 	<connections>
 		<connection>
