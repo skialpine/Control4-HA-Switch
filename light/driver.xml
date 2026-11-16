@@ -1,0 +1,339 @@
+<devicedata>
+  <copyright>BP</copyright>
+  <creator>BP</creator>
+  <manufacturer>BP</manufacturer>
+  <name>HA Light</name>
+  <model>HA Light</model>
+  <created>09/10/2023 12:00</created>
+  <modified>11/14/2026 12:00</modified>
+  <version>1</version>
+  <control>lua_gen</control>
+  <controlmethod>IP</controlmethod>
+  <driver>DriverWorks</driver>
+  <combo>false</combo>
+  <composer_categories>
+    <category>Lighting</category>
+  </composer_categories>
+  <proxies qty="1">
+    <proxy name="HA Light" proxybindingid="5001">light_v2</proxy>
+  </proxies>
+  <config>
+    <script jit="1" file="light/driver.lua" />
+    <documentation file="www/documentation/index.html" />
+    <properties>
+      <property>
+        <name>Device Setup</name>
+        <type>STRING</type>
+        <default>Actions &gt; Select Device &gt; ... to search lights and gesture controls.</default>
+        <readonly>true</readonly>
+      </property>
+      <property>
+        <name>Operation Mode</name>
+        <type>LIST</type>
+        <items>
+          <item>Control HA Device</item>
+          <item>Control HA Device with Button Events</item>
+          <item>Programming Events Only</item>
+          <item>Control Connected C4 Light</item>
+        </items>
+        <default>Control HA Device</default>
+        <readonly>false</readonly>
+      </property>
+      <property>
+        <name>Mode Description</name>
+        <type>STRING</type>
+        <default>Control the selected HA device; no gesture integration needed.</default>
+        <readonly>true</readonly>
+      </property>
+      <property><name>Selected Device</name><type>STRING</type><readonly>true</readonly><default>Not selected</default></property>
+      <property><name>App Control Link</name><type>LIST</type><items><item>Top</item><item>Bottom</item><item>Toggle</item></items><default>Top</default><readonly>false</readonly><tooltip>Controller Link whose C4 light is controlled and displayed by this driver's app tile. Physical paddles retain their separate links.</tooltip></property>
+      <property><name>Connected Light</name><type>STRING</type><readonly>true</readonly><default>No connected C4 light</default></property>
+      <property>
+        <name>Entity Selection</name>
+        <type>LIST</type>
+        <items>
+          <item>Manual Entity ID</item>
+        </items>
+        <default>Manual Entity ID</default>
+        <readonly>false</readonly>
+      </property>
+      <property>
+        <name>Entity ID</name>
+        <type>STRING</type>
+        <readonly>false</readonly>
+        <default />
+      </property>
+      <property>
+        <name>Discovery Catalog Entity ID</name>
+        <type>STRING</type>
+        <readonly>false</readonly>
+        <default>sensor.ha_gesture_bridge_catalog</default>
+      </property>
+      <property>
+        <name>Discovery Status</name>
+        <type>STRING</type>
+        <default>Not refreshed</default>
+        <readonly>true</readonly>
+      </property>
+      <property>
+        <name>Status</name>
+        <type>STRING</type>
+        <default>Waiting for state</default>
+        <readonly>true</readonly>
+      </property>
+      <property>
+        <name>Selected Capabilities</name>
+        <type>STRING</type>
+        <default>Waiting for metadata</default>
+        <readonly>true</readonly>
+      </property>
+      <property><name>Button Capabilities</name><type>STRING</type><readonly>true</readonly><default>Button events need HA Gesture Bridge</default></property>
+      <property>
+        <name>Last Gesture</name>
+        <type>STRING</type>
+        <readonly>true</readonly>
+        <default />
+      </property>
+      <property>
+        <name>Gesture Count</name>
+        <type>STRING</type>
+        <readonly>true</readonly>
+        <default>0</default>
+      </property>
+      <property>
+        <name>Last Sequence</name>
+        <type>STRING</type>
+        <readonly>true</readonly>
+        <default>0</default>
+      </property>
+      <property>
+        <name>Driver Version</name>
+        <default />
+        <type>STRING</type>
+        <readonly>true</readonly>
+      </property>
+      <property>
+        <name>Debug Mode</name>
+        <type>LIST</type>
+        <items>
+          <item>Off</item>
+          <item>On</item>
+        </items>
+        <default>Off</default>
+        <readonly>false</readonly>
+      </property>
+      <property>
+        <name>Latency Diagnostics</name>
+        <type>LIST</type>
+        <items>
+          <item>Off</item>
+          <item>On</item>
+        </items>
+        <default>Off</default>
+        <readonly>false</readonly>
+      </property>
+    <property><name>LED Behavior</name><type>LIST</type><items><item>Use Device Setting</item><item>Follow Load</item><item>Follow Load (Inverted)</item><item>Always On</item><item>Always Off</item><item>Follow Bound Device</item></items><default>Use Device Setting</default><readonly>false</readonly></property>
+<property><name>LED Indicator</name><type>LIST</type><items><item>Toggle</item></items><default>Toggle</default><readonly>false</readonly><tooltip>Choose the indicator whose On and Off colors you want to configure.</tooltip></property>
+<property><name>LED On Color</name><type>COLOR_SELECTOR</type><default>255,255,255</default><readonly>false</readonly><tooltip>Color used when Follow Bound Device reports On. Does not change LED behavior.</tooltip></property>
+<property><name>LED Off Color</name><type>COLOR_SELECTOR</type><default>0,0,0</default><readonly>false</readonly><tooltip>Color used when Follow Bound Device reports Off. Black turns the indicator off when tracking.</tooltip></property>
+<property><name>LED Status</name><type>STRING</type><readonly>true</readonly><default>Not exposed/configured</default></property>
+<property><name>LED Feedback Source</name><type>LIST</type><items><item>Disabled</item><item>Top</item><item>Bottom</item><item>Toggle</item></items><default>Disabled</default><readonly>false</readonly></property>
+</properties>
+    <actions>
+      <action>
+        <name>Refresh Entities</name>
+        <command>RefreshEntities</command>
+      </action>
+      <action>
+        <name>Select Device</name>
+        <command>SelectDevice</command>
+        <params>
+          <param>
+            <name>Device</name>
+            <type>CUSTOM_SELECT:BrowseHALightDevices</type>
+            <search>
+              <filters>
+                <filter name="all">All Devices</filter>
+                <filter name="switch">Switches</filter>
+                <filter name="dimmer">Dimmers</filter>
+                <filter name="gesture">Gestures</filter>
+              </filters>
+            </search>
+          </param>
+        </params>
+      </action>
+    <action><name>Refresh LED Feedback</name><command>RefreshLEDFeedback</command></action>
+      <action><name>Show Advanced Properties</name><command>ShowAdvancedProperties</command></action>
+      <action><name>Hide Advanced Properties</name><command>HideAdvancedProperties</command></action>
+      <action><name>Print Diagnostics</name><command>PrintDiagnostics</command></action>
+    </actions>
+    <commands>
+      <command>
+        <name>Turn On</name>
+        <description>Turn NAME On</description>
+        <params>
+				</params>
+      </command>
+      <command>
+        <name>Turn Off</name>
+        <description>Turn NAME Off</description>
+        <params>
+				</params>
+      </command>
+      <command>
+        <name>Toggle</name>
+        <description>Toggle NAME</description>
+        <params />
+      </command>
+    <command><name>Set LED On Color</name><description>NAME: set led on color to PARAM2</description><params><param><name>Button</name><type>DYNAMIC_LIST</type></param><param><name>Color</name><type>STRING</type></param></params></command>
+<command><name>Set LED Off Color</name><description>NAME: set led off color to PARAM2</description><params><param><name>Button</name><type>DYNAMIC_LIST</type></param><param><name>Color</name><type>STRING</type></param></params></command>
+<command><name>Set LED Current Color</name><description>NAME: set led current color to PARAM2</description><params><param><name>Button</name><type>DYNAMIC_LIST</type></param><param><name>Color</name><type>STRING</type></param></params></command>
+<command><name>Set All LED Colors</name><description>NAME: set all led colors to PARAM1</description><params><param><name>Color</name><type>STRING</type></param></params></command>
+<command><name>Set LED Behavior</name><description>NAME: set led behavior to PARAM2</description><params><param><name>Button</name><type>DYNAMIC_LIST</type></param><param><name>Behavior</name><type>DYNAMIC_LIST</type></param></params></command>
+<command><name>Set LED Brightness</name><description>NAME: set led brightness to PARAM2</description><params><param><name>Button</name><type>DYNAMIC_LIST</type></param><param><name>Brightness</name><type>STRING</type></param></params></command>
+</commands>
+  </config>
+  <capabilities>
+    <dimmer>false</dimmer>
+    <on_off>true</on_off>
+    <set_level>false</set_level>
+    <ramp_level>false</ramp_level>
+    <supports_target>false</supports_target>
+    <supports_brightness_stop>false</supports_brightness_stop>
+    <has_button_events>true</has_button_events>
+    <multi_click>true</multi_click>
+    <has_leds>true</has_leds>
+    <hide_proxy_properties>true</hide_proxy_properties>
+    <hide_proxy_events>false</hide_proxy_events>
+    <supports_color>false</supports_color>
+    <supports_color_correlated_temperature>false</supports_color_correlated_temperature>
+    <advanced_scene_support>false</advanced_scene_support>
+    <reduced_als_support>false</reduced_als_support>
+    <load_group_support>false</load_group_support>
+    <supports_broadcast_scenes>false</supports_broadcast_scenes>
+    <click_rates>false</click_rates>
+    <hold_rates>false</hold_rates>
+    <cold_start>false</cold_start>
+  </capabilities>
+  <events />
+  <connections>
+    <connection>
+      <id>999</id>
+      <facing>1</facing>
+      <type>1</type>
+      <connectionname>Device Link</connectionname>
+      <consumer>True</consumer>
+      <classes>
+        <class>
+          <classname>HA_DEVICE</classname>
+          <autobind>True</autobind>
+        </class>
+      </classes>
+    </connection>
+    <connection>
+      <id>200</id>
+      <facing>6</facing>
+      <connectionname>Top Button Link</connectionname>
+      <type>1</type>
+      <consumer>False</consumer>
+      <audiosource>False</audiosource>
+      <videosource>False</videosource>
+      <linelevel>True</linelevel>
+      <classes>
+        <class>
+          <classname>BUTTON_LINK</classname>
+        </class>
+      </classes>
+    </connection>
+    <connection>
+      <id>201</id>
+      <facing>6</facing>
+      <connectionname>Bottom Button Link</connectionname>
+      <type>1</type>
+      <consumer>False</consumer>
+      <audiosource>False</audiosource>
+      <videosource>False</videosource>
+      <linelevel>True</linelevel>
+      <classes>
+        <class>
+          <classname>BUTTON_LINK</classname>
+        </class>
+      </classes>
+    </connection>
+    <connection>
+      <id>202</id>
+      <facing>6</facing>
+      <connectionname>Toggle Button Link</connectionname>
+      <type>1</type>
+      <consumer>False</consumer>
+      <audiosource>False</audiosource>
+      <videosource>False</videosource>
+      <linelevel>True</linelevel>
+      <classes>
+        <class>
+          <classname>BUTTON_LINK</classname>
+        </class>
+      </classes>
+    </connection>
+    <connection>
+      <id>203</id>
+      <facing>6</facing>
+      <connectionname>Top Controller Link</connectionname>
+      <type>1</type>
+      <consumer>True</consumer>
+      <audiosource>False</audiosource>
+      <videosource>False</videosource>
+      <linelevel>True</linelevel>
+      <classes>
+        <class>
+          <classname>BUTTON_LINK</classname>
+        </class>
+      </classes>
+    </connection>
+    <connection>
+      <id>204</id>
+      <facing>6</facing>
+      <connectionname>Bottom Controller Link</connectionname>
+      <type>1</type>
+      <consumer>True</consumer>
+      <audiosource>False</audiosource>
+      <videosource>False</videosource>
+      <linelevel>True</linelevel>
+      <classes>
+        <class>
+          <classname>BUTTON_LINK</classname>
+        </class>
+      </classes>
+    </connection>
+    <connection>
+      <id>205</id>
+      <facing>6</facing>
+      <connectionname>Toggle Controller Link</connectionname>
+      <type>1</type>
+      <consumer>True</consumer>
+      <audiosource>False</audiosource>
+      <videosource>False</videosource>
+      <linelevel>True</linelevel>
+      <classes>
+        <class>
+          <classname>BUTTON_LINK</classname>
+        </class>
+      </classes>
+    </connection>
+    <connection>
+      <id>5001</id>
+      <facing>6</facing>
+      <connectionname>HA Light Light</connectionname>
+      <type>2</type>
+      <consumer>False</consumer>
+      <audiosource>False</audiosource>
+      <videosource>False</videosource>
+      <linelevel>False</linelevel>
+      <classes>
+        <class>
+          <classname>LIGHT_V2</classname>
+        </class>
+      </classes>
+    </connection>
+  </connections>
+</devicedata>
